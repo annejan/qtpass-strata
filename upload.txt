@@ -1,0 +1,41 @@
+FILE
+preview.mp4 (960x402, 105 s, with sound)
+
+TITLE (pick one)
+QtPass: Twelve Years in Stone
+5,247 commits, carved in rock: the history of QtPass
+Twelve Years in Stone: a git history as a canyon
+
+DESCRIPTION
+Twelve years of QtPass, the open-source GUI for pass, as a canyon wall.
+
+Every layer of rock is one month of code. Left to right is time. A glowing front, "now", lays the rock down as it moves. Behind it, each layer is only as thick as the code from that month that still survives, so the old walls wear down as new work rewrites them.
+
+Sparks are commits, coloured by author. Beacons are releases. The river of light is the translations, from 1 language to 64. The quiet years pass by night. Then 2026 erupts: 2,306 commits, 44% of all history, and 61% of the older code rewritten.
+
+5,247 commits · 180 contributors · 64 languages · 72,701 lines of code, still cooling.
+
+QtPass 2.0.0-rc3 came out today: https://github.com/IJHack/QtPass/releases/tag/v2.0.0-rc3
+https://qtpass.org
+
+Made from the real git history: git-of-theseus for the code survival data, Blender (EEVEE) for the canyon, a soundtrack generated from the commits themselves, ffmpeg for the finish. Low-resolution preview; a 4K version is coming.
+
+CHAPTERS
+0:00 First commit
+0:07 2014
+0:11 2015: v1.0.0
+0:19 2016–2020
+0:33 2021–2025: the quiet years
+0:41 2026
+0:53 The past, rewritten
+1:09 The present
+
+TAGS
+QtPass, pass, password manager, open source, git history, data visualization, Blender, git-of-theseus, Qt, FOSS
+
+SHORT POST (Mastodon and similar)
+Twelve years of #QtPass as a canyon: every layer is a month of code, worn down as it gets rewritten. 2026 erupts. 5,247 commits, 180 contributors, 64 languages. #FOSS #Blender #dataviz
+2.0.0-rc3 is out today: https://github.com/IJHack/QtPass/releases/tag/v2.0.0-rc3
+
+THUMBNAIL
+thumbnail_16x9.jpg: 1280x720, the present face with the rc labels, logo and title

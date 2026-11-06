@@ -1,0 +1,60 @@
+FILE
+qtpass-strata-4k.mp4 (3840x1608, 105 s, H.264 + AAC, with sound)
+Thumbnail: thumbnail_16x9.jpg (1280x720)
+
+TITLE (pick one, all under 100 characters)
+QtPass: Twelve Years in Stone (4K)
+Twelve Years in Stone: the git history of QtPass as a canyon (4K)
+5,247 commits, carved in rock: the history of QtPass (4K)
+
+DESCRIPTION
+Twelve years of QtPass, the open-source GUI for pass, the standard Unix password manager, as a canyon wall.
+
+Every layer of rock is one month of code. Left to right is time. A glowing front, "now", lays the rock down as it moves. Behind it, each layer is only as thick as the code from that month that still survives, so the old walls wear down as new work rewrites them. A faint high-water line shows where they once stood.
+
+Sparks are commits, coloured by author. Beacons are releases. The river of light is the translations, from 1 language to 64, with a tributary wherever new ones joined. The quiet years pass by night. Then 2026 erupts: 2,306 commits, 44% of all history, and 61% of the older code rewritten.
+
+5,247 commits · 180 contributors · 64 languages · 72,701 lines of code, still cooling.
+
+Watch in 4K for the detail in the rock.
+
+QtPass 2.0.0-rc3 is out: https://github.com/IJHack/QtPass/releases/tag/v2.0.0-rc3
+Website: https://qtpass.org
+Source: https://github.com/IJHack/QtPass
+Translate QtPass: https://hosted.weblate.org/projects/qtpass/qtpass/
+
+Made from the real git history: git-of-theseus for the code survival data, Blender (EEVEE) for the canyon, a soundtrack generated from the commits themselves (one note per commit, a boom and a bell per release), and ffmpeg for the finish.
+
+Thanks to everyone who wrote code, reported bugs, tested and translated QtPass over these twelve years.
+
+CHAPTERS
+0:00 First commit
+0:07 2014
+0:11 2015: v1.0.0
+0:19 2016–2020
+0:33 2021–2025: the quiet years
+0:41 2026
+0:53 The past, rewritten
+1:09 The present
+1:31 Twelve years in stone
+
+TAGS (YouTube "Tags" field, comma-separated, under 500 characters)
+QtPass, pass, password manager, passwordstore, open source, FOSS, free software, git history, git visualization, data visualization, dataviz, Blender, Blender EEVEE, git-of-theseus, Qt, Linux, 4K, procedural animation, generative music
+
+HASHTAGS (first three show above the title)
+#QtPass #OpenSource #DataVisualization
+
+SETTINGS
+Category: Science & Technology
+Language: English
+Made for kids: No
+Altered or synthetic content: No (rendered animation of real data, no realistic people or events)
+License: Standard YouTube License or Creative Commons (your call)
+End screen: link to qtpass.org or the release (only if you link a website in your channel settings)
+
+PINNED COMMENT
+How to read it: left to right is time, every layer is a month of code, and its thickness is how much of that month's code survives today. That is why the old walls wear down when 2026 arrives. Get QtPass 2.0.0-rc3: https://github.com/IJHack/QtPass/releases/tag/v2.0.0-rc3
+
+SHORT POST (Mastodon and similar)
+Twelve years of #QtPass as a canyon, now in 4K: every layer is a month of code, worn down as it gets rewritten. 2026 erupts. 5,247 commits, 180 contributors, 64 languages. #FOSS #Blender #dataviz
+[YouTube link]
