@@ -1299,6 +1299,123 @@ def setup_render(pct):
     vs.exposure = -0.6
 
 
+# ---------------------------------------------------------------- CVE
+
+CVE_DAY = "2018-01-02"     # CVE-2017-18021, fixed (#342) and released in v1.2.1
+CVE_LEN = 6 * FPS          # on screen this long, then gone without a trace
+
+
+class Crack:
+    """CVE-2017-18021: a red fault runs up the wall where the fix landed,
+    then v1.2.1 seals it white-hot and it cools away. Hidden outside its
+    window, so only those frames change."""
+
+    def __init__(self, wall):
+        self.wall = wall
+        self.f0 = TL.frame_of_x(TL.X(CVE_DAY))
+        self.k = int(np.argmin(np.abs(XK - TL.X(CVE_DAY))))
+        rnd = random.Random(18021)
+        # a main fault and three branches: (u along the height, dx, width)
+        n, dx, pts = 36, 0.0, []
+        for i in range(n):
+            dx += rnd.uniform(-0.045, 0.045)
+            pts.append((i / (n - 1), dx, 1.0))
+        lines = [pts]
+        for _ in range(3):
+            j = rnd.randrange(6, n - 8)
+            u0, x0 = pts[j][0], pts[j][1]
+            side = rnd.choice((-1, 1))
+            lines.append([(u0 + i * rnd.uniform(0.015, 0.03),
+                           x0 + side * i * rnd.uniform(0.03, 0.06), 0.55 * (1 - i / 7))
+                          for i in range(7)])
+        self.lines = lines
+        verts, faces, base = [], [], 0
+        for ln in lines:
+            for i in range(len(ln)):
+                verts += [(0, 0, 0), (0, 0, 0)]
+                if i:
+                    a = base + 2 * (i - 1)
+                    faces.append((a, a + 1, a + 3, a + 2))
+            base += 2 * len(ln)
+        m = bpy.data.materials.new("Crack")
+        nt = m.node_tree
+        nt.nodes.clear()
+        out = node(nt, "ShaderNodeOutputMaterial", (300, 0))
+        self.em = node(nt, "ShaderNodeEmission", (0, 0))
+        nt.links.new(self.em.outputs["Emission"], out.inputs["Surface"])
+        self.ob = new_mesh_object("Crack", verts, faces, mat=m)
+        self.ob.visible_shadow = False
+        self.co = np.zeros((len(verts), 3), dtype=np.float32)
+        self.ld = bpy.data.lights.new("CrackLight", "POINT")
+        self.ld.shadow_soft_size = 0.4
+        self.lo = bpy.data.objects.new("CrackLight", self.ld)
+        bpy.context.scene.collection.objects.link(self.lo)
+        x = float(XK[self.k])
+        h = float(wall_state(self.f0 + 12)[1][-1, self.k])
+        red = simple_material("CVE", (0.9, 0.2, 0.15), 0.4, (1.0, 0.1, 0.06), 1.2)
+        warm = simple_material("CVEsub", (0.9, 0.8, 0.6), 0.4, (1.0, 0.8, 0.55), 1.0)
+        self.texts = [
+            add_text("CVE-2017-18021", (x - 0.3, -1.05, 0.70 * h), 0.16, red,
+                     align="RIGHT"),
+            add_text("predictable passwords · fixed in v1.2.1",
+                     (x - 0.31, -1.05, 0.70 * h - 0.17), 0.075, warm, align="RIGHT"),
+        ]
+        self.update(None, 1)  # start hidden
+
+    def look(self, a):
+        """(growth 0..1, rgb, strength, width scale) a frames in."""
+        grow = min(max(a / 10, 0), 1)
+        flick = 1 + 0.25 * math.sin(a * 1.7) * math.sin(a * 0.63 + 1)
+        red, white = np.array((1.0, 0.07, 0.03)), np.array((1.0, 0.86, 0.62))
+        if a < 36:                                   # the fault, glowing red
+            return grow, red, 4.5 * flick, 1.0
+        if a < 46:                                   # v1.2.1 seals it
+            u = (a - 36) / 10
+            return 1, red + (white - red) * u, 4.5 + 18 * u, 1.0 + 0.3 * u
+        u = min((a - 46) / (CVE_LEN - 46), 1)        # and it cools away
+        c = white + (np.array((1.0, 0.45, 0.15)) - white) * min(u * 2, 1)
+        return 1, c, 22.5 * (1 - u) ** 2.5, 1.3 - u
+
+    def update(self, st, frame):
+        a = frame - self.f0
+        on = 0 <= a < CVE_LEN
+        for ob in [self.ob, self.lo] + self.texts:
+            ob.hide_render = ob.hide_viewport = not on
+        if not on:
+            self.ld.energy = 0
+            return
+        s = 0.001 if a < 2 else min((a - 2) / 8, 1)
+        if a > CVE_LEN - 24:
+            s = max((CVE_LEN - a) / 24, 0.001)
+        for t in self.texts:
+            t.scale = (s, s, s)
+        k = self.k
+        top = float(st[1][-1, k])
+        zs, ys = self.wall.front_profile(k)
+        grow, rgb, strength, wscale = self.look(a)
+        x0 = float(XK[k])
+        i = 0
+        for ln in self.lines:
+            for u, dx, w in ln:
+                z = 0.02 + min(u, grow) * top * 0.96
+                y = float(np.interp(z, zs, ys)) - 0.06
+                half = 0.0 if u > grow else \
+                    0.5 * wscale * w * (0.02 + 0.03 * math.sin(math.pi * min(u, 1)))
+                self.co[i] = (x0 + dx - half, y, z)
+                self.co[i + 1] = (x0 + dx + half, y, z)
+                i += 2
+        set_co(self.ob, self.co)
+        zl = 0.72 * top  # the name, on the face just left of the fault
+        yl = float(np.interp(zl, zs, ys)) - 0.18
+        self.texts[0].location = (x0 - 0.15, yl, zl)
+        self.texts[1].location = (x0 - 0.16, yl, zl - 0.17)
+        self.em.inputs["Color"].default_value = (*rgb, 1.0)
+        self.em.inputs["Strength"].default_value = strength
+        self.ld.color = tuple(rgb)
+        self.ld.energy = strength * 25 * grow
+        self.lo.location = (x0, -1.6 - 0.1 * top, 0.5 * top)
+
+
 class Scene:
     def __init__(self):
         global DG
@@ -1324,6 +1441,7 @@ class Scene:
         self.plume = Plume()
         self.light = FrontLight()
         self.camera = Camera()
+        self.crack = Crack(self.wall)
 
     def update(self, f):
         st = wall_state(f)
@@ -1336,6 +1454,7 @@ class Scene:
         self.sparks.update(f)
         self.plume.update(st, f)
         self.light.update(st, f)
+        self.crack.update(st, f)
         self.camera.set(f)
 
 
