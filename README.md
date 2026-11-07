@@ -1,5 +1,7 @@
 # QtPass strata
 
+Watch the film: https://youtu.be/1SwmYHVMlYA (4K, 1:45)
+
 Twelve years of QtPass history as a canyon wall. Left to right is time:
 3 m per calendar year plus 40 m spread over all commits, so busy months get
 room. Each layer of rock is the code written in one month (git-of-theseus
