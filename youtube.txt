@@ -1,5 +1,5 @@
 FILE
-qtpass-strata-4k.mp4 (3840x1608, 105 s, H.264 + AAC, with sound)
+qtpass-strata-4k-v2.mp4 (3840x1608, 105 s, H.264 + AAC, with sound)
 Thumbnail: thumbnail_16x9.jpg (1280x720)
 
 TITLE (pick one, all under 100 characters)
@@ -12,7 +12,7 @@ Twelve years of QtPass, the open-source GUI for pass, the standard Unix password
 
 Every layer of rock is one month of code. Left to right is time. A glowing front, "now", lays the rock down as it moves. Behind it, each layer is only as thick as the code from that month that still survives, so the old walls wear down as new work rewrites them. A faint high-water line shows where they once stood.
 
-Sparks are commits, coloured by author. Beacons are releases. The river of light is the translations, from 1 language to 64, with a tributary wherever new ones joined. The quiet years pass by night. Then 2026 erupts: 2,306 commits, 44% of all history, and 61% of the older code rewritten.
+Sparks are commits, coloured by author. Beacons are releases. The red fault in the 2017 rock is QtPass's one CVE, CVE-2017-18021: passwords from the built-in generator were predictable until v1.2.1 sealed it in January 2018. The river of light is the translations, from 1 language to 64, with a tributary wherever new ones joined. The quiet years pass by night. Then 2026 erupts: 2,306 commits, 44% of all history, and 61% of the older code rewritten.
 
 5,247 commits · 180 contributors · 64 languages · 72,701 lines of code, still cooling.
 
@@ -39,7 +39,7 @@ CHAPTERS
 1:31 Twelve years in stone
 
 TAGS (YouTube "Tags" field, comma-separated, under 500 characters)
-QtPass, pass, password manager, passwordstore, open source, FOSS, free software, git history, git visualization, data visualization, dataviz, Blender, Blender EEVEE, git-of-theseus, Qt, Linux, 4K, procedural animation, generative music
+QtPass, pass, password manager, CVE-2017-18021, security, passwordstore, open source, FOSS, free software, git history, git visualization, data visualization, dataviz, Blender, Blender EEVEE, git-of-theseus, Qt, Linux, 4K, procedural animation, generative music
 
 HASHTAGS (first three show above the title)
 #QtPass #OpenSource #DataVisualization
@@ -57,4 +57,4 @@ How to read it: left to right is time, every layer is a month of code, and its t
 
 SHORT POST (Mastodon and similar)
 Twelve years of #QtPass as a canyon, now in 4K: every layer is a month of code, worn down as it gets rewritten. 2026 erupts. 5,247 commits, 180 contributors, 64 languages. #FOSS #Blender #dataviz
-[YouTube link]
+https://youtu.be/1SwmYHVMlYA

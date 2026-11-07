@@ -11,6 +11,7 @@ every release, and the rumble and crackle of the 2026 eruption.
 import random
 import sys
 import wave
+from datetime import datetime
 
 import numpy as np
 from scipy import signal
@@ -154,6 +155,26 @@ for tag in TL.DATA["tags"]:
     t = (TL.frame_of_x(tag["x"]) - 1) / TL.FPS
     boom(t, 0.22)
     bell(t + 0.02, hz(81 if "rc" not in tag["name"] else 86), 0.08, decay=2.5)
+
+# CVE-2017-18021: the fault cracks open (a dry fracture over a tritone that
+# does not belong to D), then v1.2.1 seals it and the tension resolves to D.
+t_cve = (TL.frame_of_x(TL.x_at_ts(datetime.fromisoformat("2018-01-02").timestamp()))
+         - 1) / TL.FPS
+i = int(t_cve * SR)
+L = int(0.9 * SR)
+tt = np.arange(L) / SR
+snap = (rng.random(L) < 0.02 * np.exp(-tt * 6)) * rng.standard_normal(L)
+snap = bandpass(snap, 700, 7000) * 6 + bandpass(rng.standard_normal(L), 150, 900) \
+    * np.exp(-tt * 9) * 0.5
+L2 = int(1.6 * SR)
+t2 = np.arange(L2) / SR
+cluster = sum(np.sin(2 * np.pi * hz(n) * t2 + p) for n, p in ((56, 0), (62, 1.1), (63, 2.3)))
+cluster *= np.minimum(t2 / 0.05, 1) * np.exp(-t2 * 1.8) * 0.05
+for ch in range(2):
+    out[i:i + L, ch] += np.roll(snap, ch * 53) * 0.12
+    out[i:i + L2, ch] += cluster
+bell(t_cve + 1.5, hz(74), 0.12, decay=3.0)
+bell(t_cve + 1.52, hz(81), 0.06, decay=3.0)
 
 # ---------------------------------------------------------------- eruption
 rum = lowpass(rng.standard_normal(N), 90, 4) * 6 + 0.4 * np.sin(2 * np.pi * 33 * T)
