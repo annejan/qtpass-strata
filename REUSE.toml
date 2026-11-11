@@ -1,0 +1,29 @@
+version = 1
+
+# the code, the words and the film's own pictures
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Anne Jan Brouwer"
+SPDX-License-Identifier = "MIT"
+
+# counted from QtPass's git history: QtPass's terms
+[[annotations]]
+path = ["data/**", "scene_data.json"]
+precedence = "override"
+SPDX-FileCopyrightText = "IJHack"
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+# the QtPass logo, as QtPass licenses its artwork
+[[annotations]]
+path = "assets/qtpass-logo.png"
+precedence = "override"
+SPDX-FileCopyrightText = "AnonMoos"
+SPDX-License-Identifier = "CC0-1.0"
+
+# Lato 2.015, with Reserved Font Name "Lato"
+[[annotations]]
+path = "assets/fonts/Lato-*.ttf"
+precedence = "override"
+SPDX-FileCopyrightText = "2010-2014 tyPoland Lukasz Dziedzic <team@latofonts.com>"
+SPDX-License-Identifier = "OFL-1.1"

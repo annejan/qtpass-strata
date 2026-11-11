@@ -9,7 +9,7 @@ cohorts, translations excluded).
 
 A glowing front, "now", travels along the wall and lays the rock down.
 Behind it every layer is as thick as that month's code that still survives
-*now*, so the old walls wear down as 2026 rewrites them; a faint high-water
+_now_, so the old walls wear down as 2026 rewrites them; a faint high-water
 line shows where they once stood. Commits are sparks at the front, coloured
 by author; releases are beacons; the one CVE (CVE-2017-18021) is a red
 fault that v1.2.1 seals; the languages are a river of light at the
@@ -53,8 +53,15 @@ the .blend.
 
 ## License
 
-MIT, see [LICENSE](LICENSE): take the code and make your own films.
-The QtPass logo in `assets/` is QtPass's own artwork (based on
-[Heart-padlock by AnonMoos](https://commons.wikimedia.org/wiki/File:Heart-padlock.svg))
-and is not covered by it; `data/` is counted from QtPass's public git
-history.
+[REUSE](https://reuse.software) compliant; `REUSE.toml` says which file is
+under which terms, the texts are in `LICENSES/`:
+
+- the code and everything else of this film: MIT (see also `LICENSE`), so
+  take it and make your own
+- the Lato fonts in `assets/fonts/`: SIL Open Font License 1.1, by Łukasz
+  Dziedzic
+- the QtPass logo: CC0, after
+  [Heart-padlock by AnonMoos](https://commons.wikimedia.org/wiki/File:Heart-padlock.svg),
+  as in QtPass
+- the data counted from QtPass's git history (`data/` and `scene_data.json`): GPL-3.0-or-later,
+  as QtPass itself

@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-LATO = os.path.expanduser("~/.local/share/fonts/Lato")
+LATO = os.path.join(HERE, "assets", "fonts")  # Lato 2.015, SIL OFL 1.1
 BIG_FACE = f"{LATO}/Lato-Light.ttf"
 SMALL_FACE = f"{LATO}/Lato-Regular.ttf"
 LOGO = os.path.join(HERE, "assets", "qtpass-logo.png")
