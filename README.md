@@ -63,5 +63,5 @@ under which terms, the texts are in `LICENSES/`:
 - the QtPass logo: CC0, after
   [Heart-padlock by AnonMoos](https://commons.wikimedia.org/wiki/File:Heart-padlock.svg),
   as in QtPass
-- the data counted from QtPass's git history (`data/` and `scene_data.json`): GPL-3.0-or-later,
-  as QtPass itself
+- the data counted from QtPass's git history (`data/` and
+  `scene_data.json`): GPL-3.0-or-later, as QtPass itself
