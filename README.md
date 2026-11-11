@@ -50,3 +50,11 @@ python3 audio.py audio.wav
 `--start N --end M` to render part of the film. `--save scene.blend` writes
 the scene at frame 1; the per-frame geometry is driven by the script, not by
 the .blend.
+
+## License
+
+MIT, see [LICENSE](LICENSE): take the code and make your own films.
+The QtPass logo in `assets/` is QtPass's own artwork (based on
+[Heart-padlock by AnonMoos](https://commons.wikimedia.org/wiki/File:Heart-padlock.svg))
+and is not covered by it; `data/` is counted from QtPass's public git
+history.
